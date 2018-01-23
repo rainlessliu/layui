@@ -38,6 +38,11 @@ layui.define('layer', function(exports){
         ,number: function(value){
           if(!value || isNaN(value)) return '只能填写数字'
         }
+		,'int': function(value) {
+		  if((isNaN(value) || !(value % 1 === 0))) {
+			  return '请输入整形数据'
+		  }
+		}
         ,date: [
           /^(\d{4})[-\/](\d{1}|0\d{1}|1[0-2])([-\/](\d{1}|0\d{1}|[1-2][0-9]|3[0-1]))*$/
           ,'日期格式不正确'
@@ -485,6 +490,7 @@ layui.define('layer', function(exports){
       ,field: field
     });
   };
+
 
   //自动完成渲染
   var form = new Form()

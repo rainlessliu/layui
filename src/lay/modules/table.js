@@ -418,6 +418,10 @@ layui.define(['laytpl', 'laypage', 'layer', 'form'], function(exports){
         ,data: $.extend(params, options.where)
         ,dataType: 'json'
         ,success: function(res){
+			// lmz:对数据进行预处理
+			if(options.prepare) {
+				res = options.prepare(res);
+			}
           if(res[response.statusName] != response.statusCode){
             that.renderForm();
             that.layMain.html('<div class="'+ NONE +'">'+ (res[response.msgName] || '返回的数据状态异常') +'</div>');
